@@ -1,0 +1,5 @@
+bookiesports==0.4.14
+requests==2.22.0
+pandas==1.0.3
+bos_mint==0.5.0
+bos_incidents==0.4.1
