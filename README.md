@@ -19,7 +19,6 @@ pip3 install -r requirements.txt
 
 Update config_cp.yaml with relevant information
 
-
 ==========
 How to Run
 ==========

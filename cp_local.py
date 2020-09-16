@@ -293,9 +293,9 @@ class Cp():
         self._incident = incident
         incident = normalize(incident, True)
         self._incident = incident
-        r = requests.post(url=bos["local"], json=incident)
+        # r = requests.post(url=bos["local"], json=incident)
         # r = requests.post(url=bos["elizabeth"], json=incident)
-        # r = requests.post(url=bos["hercules"], json=incident)
+        r = requests.post(url=bos["hercules"], json=incident)
         return r
 
     def Create(self):
