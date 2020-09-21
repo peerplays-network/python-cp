@@ -57,6 +57,16 @@ class Cp():
         index = int(index)
         return keys[index]
 
+    def GetKeyParticipant(self, keys, participantDisplays):
+        keys = list(keys)
+        k = 0
+        for key in keys:
+            print(k, participantDisplays[k])
+            k = k + 1
+        index = input("Enter index of key: ")
+        index = int(index)
+        return keys[index]
+
     def GetSportsList(self):
         return list(self.bookiesports.keys())
 
@@ -68,11 +78,14 @@ class Cp():
     def GetParticipants(self, sport, participantKey):
         participants = self.bookiesports[self._sport]["participants"][self._participantKey]["participants"]
         particpantIdentifiers = []
+        participantDisplays = []
         for participant in participants:
             particpantIdentifiers.append(participant["aliases"][0])
+            participantDisplays.append(participant.values())
             # particpantIdentifiers.append(participant["identifier"])
             # particpantIdentifiers.append(participant["name"]["en"])
-        return particpantIdentifiers
+        return particpantIdentifiers, participantDisplays
+
 
     def CliManufactureCreateIncident(self):
         self._call = INCIDENT_CALLS[0]
@@ -88,14 +101,14 @@ class Cp():
         self._eventGroupIdentifier = self.bookiesports[self._sport]["eventgroups"][self._eventGroup]["identifier"]
         # self._eventGroupIdentifier = self.bookiesports[self._sport]["eventgroups"][self._eventGroup]["aliases"][0]
         self._participantKey = self.bookiesports[self._sport]["eventgroups"][self._eventGroup]["participants"]
-        self._participants = self.GetParticipants(
+        self._participants, participantDisplays = self.GetParticipants(
                 self._sport, self._participantKey)
         print("")
         print("Select Home Team")
-        self._home = self.GetKey(self._participants)
+        self._home = self.GetKeyParticipant(self._participants, participantDisplays)
         print("")
         print("Select Away Team")
-        self._away = self.GetKey(self._participants)
+        self._away = self.GetKeyParticipant(self._participants, participantDisplays)
 
         incident = dict()
         incident["call"] = self._call
@@ -139,6 +152,10 @@ class Cp():
             event = eventsAll.iloc[k]
             print("")
             print(event)
+            eventGroup = node.getEventGroup(event["event_group_id"])
+            print(eventGroup["name"])
+            sport = node.getSport(eventGroup["sport_id"])
+            print(sport)
             choice = input(
                     "'U'pdate the event/'S'kip to the next event, u/s : ")
             if choice == "u":

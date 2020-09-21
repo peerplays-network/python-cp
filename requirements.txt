@@ -1,4 +1,6 @@
-bookiesports==0.4.14
+ipython
+graphene
+bookiesports==0.4.16
 requests==2.22.0
 pandas==1.0.3
 bos_mint==0.5.0
