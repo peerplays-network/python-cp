@@ -6,10 +6,18 @@ from bos_incidents.format import string_to_incident, incident_to_string
 from bos_incidents.datestring import date_to_string, string_to_date
 from datetime import datetime, timezone
 import requests
+import yaml
+
+with open("config_cp.yaml", "r") as f:
+    config = yaml.safe_load(f)
+chainName = config["chainName"]
+bosApis = config["bosApis"]
 
 node = Node()
 ppy = node.get_node()
 rpc = ppy.rpc
+
+
 
 INCIDENT_CALLS = [
     "create",
@@ -20,15 +28,17 @@ INCIDENT_CALLS = [
     "dynamic_bmgs",
 ]
 
-dps = dict()
-bos = dict()
-dps["local"] = "http://localhost:8010/replay"
-bos["elizabeth"] = "http://35.183.41.242:8010/trigger"
-bos["hercules"] = "http://35.183.34.135:8010/trigger"
-bos["local"] = "http://localhost:8010/trigger"
+# dps = dict()
+# bos = dict()
+# dps["local"] = "http://localhost:8010/replay"
+# bos["elizabeth"] = "http://35.183.41.242:8010/trigger"
+# bos["hercules"] = "http://35.183.34.135:8010/trigger"
+# bos["local"] = "http://localhost:8010/trigger"
 
 normalizer = IncidentsNormalizer(chain="elizabeth")
+normalizer = IncidentsNormalizer(chain=chainName)
 normalize = normalizer.normalize
+
 
 def substitution(teams, scheme):
     class Teams:
@@ -38,8 +48,9 @@ def substitution(teams, scheme):
     ret = dict()
     for lang, name in scheme.items():
         ret[lang] = name.format(teams=Teams)
-    ret = ret["en"] 
+    ret = ret["en"]
     return ret
+
 
 class Cp():
 
@@ -76,7 +87,8 @@ class Cp():
         return eventGroupsList
 
     def GetParticipants(self, sport, participantKey):
-        participants = self.bookiesports[self._sport]["participants"][self._participantKey]["participants"]
+        participants = self.bookiesports[self._sport]["participants"][
+                self._participantKey]["participants"]
         particpantIdentifiers = []
         participantDisplays = []
         for participant in participants:
@@ -85,7 +97,6 @@ class Cp():
             # particpantIdentifiers.append(participant["identifier"])
             # particpantIdentifiers.append(participant["name"]["en"])
         return particpantIdentifiers, participantDisplays
-
 
     def CliManufactureCreateIncident(self):
         self._call = INCIDENT_CALLS[0]
@@ -98,17 +109,22 @@ class Cp():
         print("")
         print("Select Event Group")
         self._eventGroup = self.GetKey(self._eventGroupsList)
-        self._eventGroupIdentifier = self.bookiesports[self._sport]["eventgroups"][self._eventGroup]["identifier"]
-        # self._eventGroupIdentifier = self.bookiesports[self._sport]["eventgroups"][self._eventGroup]["aliases"][0]
-        self._participantKey = self.bookiesports[self._sport]["eventgroups"][self._eventGroup]["participants"]
+        self._eventGroupIdentifier = self.bookiesports[self._sport][
+                "eventgroups"][self._eventGroup]["identifier"]
+        # self._eventGroupIdentifier = self.bookiesports[self._sport][
+        # "eventgroups"][self._eventGroup]["aliases"][0]
+        self._participantKey = self.bookiesports[self._sport]["eventgroups"][
+                self._eventGroup]["participants"]
         self._participants, participantDisplays = self.GetParticipants(
                 self._sport, self._participantKey)
         print("")
         print("Select Home Team")
-        self._home = self.GetKeyParticipant(self._participants, participantDisplays)
+        self._home = self.GetKeyParticipant(
+                self._participants, participantDisplays)
         print("")
         print("Select Away Team")
-        self._away = self.GetKeyParticipant(self._participants, participantDisplays)
+        self._away = self.GetKeyParticipant(
+                self._participants, participantDisplays)
 
         incident = dict()
         incident["call"] = self._call
@@ -120,7 +136,8 @@ class Cp():
         incident["id"]["event_group_name"] = self._eventGroupIdentifier
         # incident["id"]["event_group_name"] = self._eventGroup
         print("")
-        startTime = input("Enter Start Time in the format 2020-08-25T22:00:00Z :")
+        startTime = input(
+                "Enter Start Time in the format 2020-08-25T22:00:00Z :")
         startTime = date_to_string(startTime)
         incident["id"]["start_time"] = startTime
         incident["arguments"] = {"whistle_start_time": startTime}
@@ -199,7 +216,6 @@ class Cp():
         incident = dict()
         incident["call"] = self._call
 
-
         # incident["arguments"] = {
         # "whistle_start_time": "2020-08-25T22:22:45.00Z"}
         startTime = event["start_time"] + "Z"
@@ -224,8 +240,9 @@ class Cp():
                 True)
 
         self._eventGroup = eventGroup
-        eventGroupAlias = self.EventGroupAlias(sport, eventGroup)
-        # eventGroupAlias = self.bookiesports[sport]["eventgroups"][eventGroup]["aliases"][0]
+        # eventGroupAlias = self.EventGroupAlias(sport, eventGroup)
+        # eventGroupAlias = self.bookiesports[sport]["eventgroups"][
+        # eventGroup]["aliases"][0]
 
         homeAway = event["name"][0][1]
         self._homeAway = homeAway
@@ -264,7 +281,7 @@ class Cp():
             print("")
             homeScore = input("Enter Home " + homeAlias + " Score: ")
             print("")
-            awayScore = input("Enter Away " + awayAlias +  " Score: ")
+            awayScore = input("Enter Away " + awayAlias + " Score: ")
             incident["arguments"]["home_score"] = homeScore
             incident["arguments"]["away_score"] = awayScore
 
@@ -305,20 +322,20 @@ class Cp():
         incident["unique_string"] = string
         incident["provider_info"] = dict()
         incident["provider_info"]["name"] = providerName
-        incident["provider_info"]["pushed"] = date_to_string(datetime.now(tz=timezone.utc))
-        
+        incident["provider_info"]["pushed"] = date_to_string(
+                datetime.now(tz=timezone.utc))
         self._incident = incident
         incident = normalize(incident, True)
         self._incident = incident
         # r = requests.post(url=bos["local"], json=incident)
-        # r = requests.post(url=bos["elizabeth"], json=incident)
-        r = requests.post(url=bos["hercules"], json=incident)
+        for api in bosApis:
+            r = requests.post(url=api, json=incident)
         return r
 
     def Create(self):
         incident = self.CliManufactureCreateIncident()
         r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2") 
+        r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
         return r, r2
 
@@ -329,5 +346,3 @@ if __name__ == "__main__":
     # incident = self.CliManufactureIncident()
     string_to_incident
     string_to_date
-
-
