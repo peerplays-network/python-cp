@@ -18,7 +18,6 @@ ppy = node.get_node()
 rpc = ppy.rpc
 
 
-
 INCIDENT_CALLS = [
     "create",
     "in_progress",
@@ -27,13 +26,6 @@ INCIDENT_CALLS = [
     "canceled",
     "dynamic_bmgs",
 ]
-
-# dps = dict()
-# bos = dict()
-# dps["local"] = "http://localhost:8010/replay"
-# bos["elizabeth"] = "http://35.183.41.242:8010/trigger"
-# bos["hercules"] = "http://35.183.34.135:8010/trigger"
-# bos["local"] = "http://localhost:8010/trigger"
 
 normalizer = IncidentsNormalizer(chain="elizabeth")
 normalizer = IncidentsNormalizer(chain=chainName)
@@ -72,7 +64,8 @@ class Cp():
         keys = list(keys)
         k = 0
         for key in keys:
-            print(k, participantDisplays[k])
+            # print(k, participantDisplays[k])
+            print(k, key)
             k = k + 1
         index = input("Enter index of key: ")
         index = int(index)
@@ -92,9 +85,9 @@ class Cp():
         particpantIdentifiers = []
         participantDisplays = []
         for participant in participants:
-            particpantIdentifiers.append(participant["aliases"][0])
+            # particpantIdentifiers.append(participant["aliases"][0])
             participantDisplays.append(participant.values())
-            # particpantIdentifiers.append(participant["identifier"])
+            particpantIdentifiers.append(participant["identifier"])
             # particpantIdentifiers.append(participant["name"]["en"])
         return particpantIdentifiers, participantDisplays
 
@@ -304,17 +297,14 @@ class Cp():
         self._incident = incident
         string = incident_to_string(incident)
         self._string = string
-
         # normalize(string_to_incident(string), True)
-
         params = dict()
         params["manufacture"] = string
         params["restrict_witness_group"] = "elizabeth"
         params["token"] = "pbsabookie"
         self._params = params
-
-        r = requests.get(url=dps["local"], params=params)
-        return r
+        # r = requests.get(url=dps["local"], params=params)
+        # return r
 
     def Push2bos(self, incident, providerName):
         string = incident_to_string(incident)
