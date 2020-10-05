@@ -329,9 +329,24 @@ class Cp():
         # r = self.Push2dp(self._incident)
         return r, r2
 
+    def Choose(self):
+        print("Choose u or c:")
+        print("u: Update event")
+        print("c: Create event")
+        choice = input("Enter your choice: ")
+        if choice == "u":
+            self.Update()
+        elif choice == "c":
+            self.Create()
+        else:
+            print("You didn't make a relevant choice, try again")
+
+
+
 
 if __name__ == "__main__":
     self = Cp()
+    self.Choose()
     # self.Create()
     # incident = self.CliManufactureIncident()
     string_to_incident
