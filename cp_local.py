@@ -47,7 +47,7 @@ def substitution(teams, scheme):
 class Cp():
 
     def __init__(self):
-        self.bookiesports = BookieSports("beatrice")
+        self.bookiesports = BookieSports(chainName)
         pass
 
     def GetKey(self, keys):
@@ -340,8 +340,6 @@ class Cp():
             self.Create()
         else:
             print("You didn't make a relevant choice, try again")
-
-
 
 
 if __name__ == "__main__":
