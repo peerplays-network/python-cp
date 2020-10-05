@@ -1,7 +1,9 @@
+peerplays==0.3.0
+bookiesports
+# requests==2.21.0
+bos-sync==0.3.0
+graphenelib==1.0.1
+bos_mint
+bos_incidents
 ipython
-graphenelib
-bookiesports==0.4.16
-requests==2.22.0
-pandas==1.0.3
-bos_mint==0.5.0
-bos_incidents==0.4.1
+pandas
