@@ -106,7 +106,7 @@ class IncidentsNormalizer(object):
             toReturn = start_date <= self._string_to_date(eventgroup["finish_date"], "to") and start_date >= self._string_to_date(eventgroup["start_date"], "from")
         except TypeError:
             pass
-            # log.info("datetime offset naive, failed")
+            # log.info("datetime offset naive, failed") #discarded
 
         try:
             _timezone = timezone('UTC')
