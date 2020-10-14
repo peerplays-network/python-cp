@@ -14,6 +14,7 @@ chainName = config["chainName"]
 bosApis = config["bosApis"]
 
 node = Node()
+node.unlock("peerplays**")
 ppy = node.get_node()
 rpc = ppy.rpc
 
@@ -27,7 +28,7 @@ INCIDENT_CALLS = [
     "dynamic_bmgs",
 ]
 
-normalizer = IncidentsNormalizer(chain="elizabeth")
+# normalizer = IncidentsNormalizer(chain="elizabeth")
 normalizer = IncidentsNormalizer(chain=chainName)
 normalize = normalizer.normalize
 

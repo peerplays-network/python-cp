@@ -12,7 +12,7 @@ dataproxy_link:
     proxies:
 
 connection:
-    use: elizabeth # enter your desired chain
+    use: gladiator # enter your desired chain
 
     elizabeth:
         node:
@@ -23,6 +23,13 @@ connection:
     hercules:
         node:
             - wss://hercules.peerplays.download/api
+        nobroadcast: False
+        num_entries: 1
+
+
+    gladiator:
+        node:
+            - ws://96.46.49.2:8090
         nobroadcast: False
         num_entries: 1
 
