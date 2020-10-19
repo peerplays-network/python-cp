@@ -16,7 +16,8 @@ bosApis = config["bosApis"]
 potatoNames = config["potatoNames"]
 
 node = Node()
-node.unlock("peerplays**")
+# node.unlock("peerplays**")
+node.unlock(config["password"])
 ppy = node.get_node()
 rpc = ppy.rpc
 
@@ -322,10 +323,10 @@ class Cp():
         self._incident = incident
         # r = requests.post(url=bos["local"], json=incident)
         rng = np.random.default_rng()
-        l = len(bosApis)
-        ks = rng.choice(l, size=l, replace=False)
+        lBosApis = len(bosApis)
+        ks = rng.choice(lBosApis, size=lBosApis, replace=False)
         for k in ks:
-        # for api in bosApis:
+            # for api in bosApis:
             api = bosApis[k]
             print(api)
             r = requests.post(url=api, json=incident)
@@ -336,6 +337,7 @@ class Cp():
         rs = []
         for potatoName in potatoNames:
             r = self.Push2bos(incident, potatoName)
+            rs.append(r)
         # r = self.Push2bos(incident, "jemshid1")
         # r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
