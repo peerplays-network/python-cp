@@ -6,6 +6,11 @@
 # proposer: 'init0'
 # proposal_expiration: 300
 # password: peerplays**
+#
+potatoNames:
+  - "jemshid3"
+  - "jemshid4"
+
 bosApis: 
   - "http://96.46.49.1:8010/trigger"
   - "http://96.46.49.2:8010/trigger"

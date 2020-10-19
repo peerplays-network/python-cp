@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from bos_mint.node import Node
 from bookiesports.normalize import IncidentsNormalizer
@@ -12,6 +13,7 @@ with open("config_cp.yaml", "r") as f:
     config = yaml.safe_load(f)
 chainName = config["chainName"]
 bosApis = config["bosApis"]
+potatoNames = config["potatoNames"]
 
 node = Node()
 node.unlock("peerplays**")
@@ -319,16 +321,26 @@ class Cp():
         incident = normalize(incident, True)
         self._incident = incident
         # r = requests.post(url=bos["local"], json=incident)
-        for api in bosApis:
+        rng = np.random.default_rng()
+        l = len(bosApis)
+        ks = rng.choice(l, size=l, replace=False)
+        for k in ks:
+        # for api in bosApis:
+            api = bosApis[k]
+            print(api)
             r = requests.post(url=api, json=incident)
         return r
 
     def Create(self):
         incident = self.CliManufactureCreateIncident()
-        r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2")
+        rs = []
+        for potatoName in potatoNames:
+            r = self.Push2bos(incident, potatoName)
+        # r = self.Push2bos(incident, "jemshid1")
+        # r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
-        return r, r2
+        # return r, r2
+        return r
 
     def Choose(self):
         print("Choose u or c:")
