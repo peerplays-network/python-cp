@@ -209,7 +209,7 @@ class Cp():
         self._event = event
         print("")
         print("Select Call")
-        self._call = self.GetKey(INCIDENT_CALLS)
+        self._call = self.GetKey(INCIDENT_CALLS[1:-1])
         incident = dict()
         incident["call"] = self._call
 
@@ -325,10 +325,11 @@ class Cp():
         rng = np.random.default_rng()
         lBosApis = len(bosApis)
         ks = rng.choice(lBosApis, size=lBosApis, replace=False)
+        # print(incident)
         for k in ks:
             # for api in bosApis:
             api = bosApis[k]
-            print(api)
+            # print(api)
             r = requests.post(url=api, json=incident)
         return r
 
@@ -345,10 +346,10 @@ class Cp():
         return r
 
     def Choose(self):
-        print("Choose u or c:")
+        # print("Choose u or c:")
         print("u: Update event")
         print("c: Create event")
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice u/c: ")
         if choice == "u":
             self.Update()
         elif choice == "c":
