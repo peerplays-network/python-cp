@@ -1,35 +1,30 @@
-python-cp stands for Pyhton Couch Potato
-This project is part of peerplays block chain tech catering sports feed for bos-auto. 
-The purpose of this project is to develop a mechanism for gathering information about sporting events collectively.
+# Python Couch Potato
 
-The code is expected to run in a server/machine with a fixed IP so that witnesses can enable access to those specific python-cp servers.
+python-cp is a command line interface tool used to update sporting events on the Peerplays blockchain by sending data to hosted [bos-auto](https://gitlab.com/PBSA/PeerplaysIO/bos/bos-auto).
 
-python-cp is a command line interface for couch potatos to update sporting events to peerplays witnesses running bos-auto.
+The project repo is maintained in the [Peerplays GitLab Repository](https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-cp).
 
-The project repo is maintained at `Peerplays Gitlab Repo <git@gitlab.com:PBSA/PeerplaysIO/tools-libs/python-cp.git>`
+## Installation
 
-=======
-Install
-=======
-Recommend running in a virtual environment
-virtualenv -p python3 env
+It is best practice to use python virtual environments. https://docs.python.org/3/tutorial/venv.html
+
+```bash
+python3 -m venv env
 source env/bin/activate
-deactivate
-pip3 install -r requirements.txt
+```
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required packages.
+
+```bash
+pip install -r requirements.txt
+```
 
 Update config_cp.yaml with relevant information
 
-==========
-How to Run
-==========
-
+## Usage
+```bash
 ipython3 -i cp_local.py
+```
+```
 self.Create()
 self.Update()
-
-=====
-TO DO
-=====
-
-#. Display detailed information along with team names
-#. Make changes for system wide installation
+```
