@@ -8,6 +8,24 @@ python-cp is a command line interface for couch potatos to update sporting event
 
 The project repo is maintained at `Peerplays Gitlab Repo <git@gitlab.com:PBSA/PeerplaysIO/tools-libs/python-cp.git>`
 
+System Requirements
+==================
+Ubuntu Linux 18.04 and 20.04 recommended.
+RAM: More than 2 GB recommended.
+
+Software Dependencies
+====================
+`python`
+`virtualenv`
+`mysql`
+
+
+Python is installed by default in Ubuntu Linux.
+
+Install other packages with
+`sudo apt install virtualenv`
+
+
 Install
 =======
 ```
@@ -19,9 +37,9 @@ git checkout passive
 Recommend running in a virtual environment
 
 ```
-virtualenv -p python3 env
+virtualenv -p python env
 source env/bin/activate
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Update config-bos-mint.yaml with relevant information
@@ -29,13 +47,13 @@ Update config-bos-mint.yaml with relevant information
 How to Run
 ==========
 ```
-python3 cp_local.py
+python cp_local.py
 ```
 
 or
 
 ```
-ipython3 -i cp_local.py
+ipython -i cp_local.py
 self.Create()
 self.Update()
 ```

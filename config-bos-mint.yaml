@@ -14,6 +14,12 @@ dataproxy_link:
 connection:
     use: gladiator # enter your desired chain
 
+    beatrice:
+        node:
+          - ws://ec2-99-79-98-229.ca-central-1.compute.amazonaws.com:8090
+        nobroadcast: False
+        num_entries: 1
+
     elizabeth:
         node:
           - ws://ec2-99-79-98-229.ca-central-1.compute.amazonaws.com:8090
