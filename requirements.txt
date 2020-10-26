@@ -1,4 +1,4 @@
-ipython3
+ipython
 graphenelib
 # bookiesports==0.4.16
 -e git+https://gitlab.com/PBSA/PeerplaysIO/bos/bookiesports.git@couch-potato#egg=bookiesports
