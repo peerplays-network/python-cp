@@ -19,8 +19,8 @@ git checkout passive
 Recommend running in a virtual environment
 
 ```
-virtualenv -p python3 env        to create virtualenv
-source env/bin/activate          to activate virtualenv
+virtualenv -p python3 env
+source env/bin/activate
 pip3 install -r requirements.txt
 ```
 
@@ -45,4 +45,4 @@ TO DO
 
 Other
 =====
-Use the command <deactivate> to exit from virtualenv
+Use the command `deactivate` to exit from virtualenv
