@@ -17,11 +17,15 @@ source env/bin/activate
 deactivate
 pip3 install -r requirements.txt
 
-Update config_cp.yaml with relevant information
+Update config-bos-mint.yaml with relevant information
 
 ==========
 How to Run
 ==========
+
+python3 cp_local.py
+
+or
 
 ipython3 -i cp_local.py
 self.Create()
@@ -31,5 +35,3 @@ self.Update()
 TO DO
 =====
 
-#. Display detailed information along with team names
-#. Make changes for system wide installation

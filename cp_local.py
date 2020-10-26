@@ -9,15 +9,15 @@ from datetime import datetime, timezone
 import requests
 import yaml
 
-with open("config_cp.yaml", "r") as f:
+with open("config-bos-mint.yaml", "r") as f:
     config = yaml.safe_load(f)
-chainName = config["chainName"]
+chainName = config["connection"]["use"]
 bosApis = config["bosApis"]
 potatoNames = config["potatoNames"]
 
 node = Node()
 # node.unlock("peerplays**")
-node.unlock(config["password"])
+# node.unlock(config["password"])
 ppy = node.get_node()
 rpc = ppy.rpc
 
