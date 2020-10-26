@@ -23,7 +23,7 @@ Python is installed by default in Ubuntu Linux.
 Install other packages with
 
 `sudo apt-get update`
-`sudo apt-get install libffi-dev libssl-dev python-dev python3-pip virtualenv`
+`sudo apt-get install libffi-dev libssl-dev python3-dev python3-pip virtualenv`
 
 `sudo apt-get install libmysqlclient-dev`
 
