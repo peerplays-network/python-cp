@@ -23,8 +23,10 @@ Software Dependencies
 Python is installed by default in Ubuntu Linux.
 
 Install other packages with
-`sudo apt install virtualenv`
+`sudo apt-get install libffi-dev libssl-dev python-dev python3-pip
+pip3 install virtualenv`
 
+`sudo apt-get install libmysqlclient-dev`
 
 Install
 =======
