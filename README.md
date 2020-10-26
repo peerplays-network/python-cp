@@ -15,14 +15,14 @@ RAM: More than 2 GB recommended.
 
 Software Dependencies
 ====================
-`python`
+`python3`
 `virtualenv`
-`mysql`
-
 
 Python is installed by default in Ubuntu Linux.
 
 Install other packages with
+
+`sudo apt-get update`
 `sudo apt-get install libffi-dev libssl-dev python-dev python3-pip virtualenv`
 
 `sudo apt-get install libmysqlclient-dev`
@@ -30,7 +30,7 @@ Install other packages with
 Install
 =======
 ```
-git clone https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-cp/-/tree/passive
+git clone https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-cp.git
 cd python-cp
 git checkout passive
 ```
@@ -38,9 +38,9 @@ git checkout passive
 Recommend running in a virtual environment
 
 ```
-virtualenv -p python env
+virtualenv -p python3 env
 source env/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Update config-bos-mint.yaml with relevant information
@@ -48,13 +48,13 @@ Update config-bos-mint.yaml with relevant information
 How to Run
 ==========
 ```
-python cp_local.py
+python3 cp_local.py
 ```
 
 or
 
 ```
-ipython -i cp_local.py
+ipython3 -i cp_local.py
 self.Create()
 self.Update()
 ```
