@@ -1,7 +1,6 @@
 ipython
 graphenelib
 requests==2.22.0
-graphenelib==1.0.1
 git+https://gitlab.com/PBSA/PeerplaysIO/bos/bookiesports.git@couch-potato#egg=bookiesports
 requests==2.22.0
 pandas==1.0.3

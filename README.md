@@ -12,7 +12,7 @@ Ubuntu 18.04 and 20.04 with at least 2GB of RAM is recommended.
 Software Dependencies
 
 ```
-sudo apt-get update && sudo apt-get install libffi-dev libssl-dev python3-dev python3-pip virtualenv libmysqlclient-dev
+sudo apt-get update && sudo apt-get install libffi-dev libssl-dev python3-dev python3-pip python3-venv libmysqlclient-dev -y
 ```
 # Installation
 
