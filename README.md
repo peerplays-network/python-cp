@@ -23,6 +23,7 @@ Python is installed by default in Ubuntu Linux.
 Install other packages with
 
 `sudo apt-get update`
+
 `sudo apt-get install libffi-dev libssl-dev python3-dev python3-pip virtualenv`
 
 `sudo apt-get install libmysqlclient-dev`
@@ -50,13 +51,15 @@ How to Run
 ```
 python3 cp_local.py
 ```
-
-or
+Now, to update any created event use 'u' And 
+to create any new event use 'c'
 
 ```
-ipython3 -i cp_local.py
-self.Create()
-self.Update()
+(env) ubuntu@ip-172-31-27-119:~/cp/python-cp$ python3 cp_local.py
+u: Update event
+c: Create event
+Enter your choice u/c:
+
 ```
 
 TO DO
