@@ -35,7 +35,7 @@ connection:
 
     gladiator:
         node:
-            - ws://96.46.49.15:8090
+            - ws://96.46.49.16:8090
         nobroadcast: False
         num_entries: 1
 

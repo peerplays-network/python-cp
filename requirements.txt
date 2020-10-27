@@ -1,14 +1,14 @@
 ipython
 graphenelib
 # bookiesports==0.4.16
--e git+https://gitlab.com/PBSA/PeerplaysIO/bos/bookiesports.git@couch-potato#egg=bookiesports
+git+https://gitlab.com/PBSA/PeerplaysIO/bos/bookiesports.git@couch-potato#egg=bookiesports
 requests==2.22.0
 pandas==1.0.3
 # bos_mint==0.5.0
--e git+https://gitlab.com/PBSA/PeerplaysIO/bos/bos-mint.git@couch-potato#egg=bos-mint
+git+https://gitlab.com/PBSA/PeerplaysIO/bos/bos-mint.git@couch-potato#egg=bos-mint
 # bos_incidents==0.4.1
--e git+https://gitlab.com/PBSA/PeerplaysIO/bos/bos-incidents.git@couch-potato#egg=bos-incidents
+git+https://gitlab.com/PBSA/PeerplaysIO/bos/bos-incidents.git@couch-potato#egg=bos-incidents
 
--e git+https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-peerplays.git@couch-potato#egg=python-peerplays
+git+https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-peerplays.git@couch-potato#egg=python-peerplays
 
 numpy
