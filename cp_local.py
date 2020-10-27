@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from bos_mint.node import Node
 from bookiesports.normalize import IncidentsNormalizer
@@ -8,12 +9,15 @@ from datetime import datetime, timezone
 import requests
 import yaml
 
-with open("config_cp.yaml", "r") as f:
+with open("config-bos-mint.yaml", "r") as f:
     config = yaml.safe_load(f)
-chainName = config["chainName"]
+chainName = config["connection"]["use"]
 bosApis = config["bosApis"]
+potatoNames = config["potatoNames"]
 
 node = Node()
+# node.unlock("peerplays**")
+# node.unlock(config["password"])
 ppy = node.get_node()
 rpc = ppy.rpc
 
@@ -27,7 +31,7 @@ INCIDENT_CALLS = [
     "dynamic_bmgs",
 ]
 
-normalizer = IncidentsNormalizer(chain="elizabeth")
+# normalizer = IncidentsNormalizer(chain="elizabeth")
 normalizer = IncidentsNormalizer(chain=chainName)
 normalize = normalizer.normalize
 
@@ -205,7 +209,7 @@ class Cp():
         self._event = event
         print("")
         print("Select Call")
-        self._call = self.GetKey(INCIDENT_CALLS)
+        self._call = self.GetKey(INCIDENT_CALLS[1:-1])
         incident = dict()
         incident["call"] = self._call
 
@@ -318,22 +322,34 @@ class Cp():
         incident = normalize(incident, True)
         self._incident = incident
         # r = requests.post(url=bos["local"], json=incident)
-        for api in bosApis:
+        rng = np.random.default_rng()
+        lBosApis = len(bosApis)
+        ks = rng.choice(lBosApis, size=lBosApis, replace=False)
+        # print(incident)
+        for k in ks:
+            # for api in bosApis:
+            api = bosApis[k]
+            # print(api)
             r = requests.post(url=api, json=incident)
         return r
 
     def Create(self):
         incident = self.CliManufactureCreateIncident()
-        r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2")
+        rs = []
+        for potatoName in potatoNames:
+            r = self.Push2bos(incident, potatoName)
+            rs.append(r)
+        # r = self.Push2bos(incident, "jemshid1")
+        # r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
-        return r, r2
+        # return r, r2
+        return r
 
     def Choose(self):
-        print("Choose u or c:")
+        # print("Choose u or c:")
         print("u: Update event")
         print("c: Create event")
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice u/c: ")
         if choice == "u":
             self.Update()
         elif choice == "c":

@@ -1,9 +1,11 @@
-peerplays==0.3.0
-bookiesports
-# requests==2.21.0
-bos-sync==0.3.0
-graphenelib==1.0.1
-bos_mint
-bos_incidents
 ipython
-pandas
+graphenelib
+requests==2.22.0
+graphenelib==1.0.1
+git+https://gitlab.com/PBSA/PeerplaysIO/bos/bookiesports.git@couch-potato#egg=bookiesports
+requests==2.22.0
+pandas==1.0.3
+git+https://gitlab.com/PBSA/PeerplaysIO/bos/bos-mint.git@couch-potato#egg=bos-mint
+git+https://gitlab.com/PBSA/PeerplaysIO/bos/bos-incidents.git@couch-potato#egg=bos-incidents
+git+https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-peerplays.git@couch-potato#egg=python-peerplays
+numpy

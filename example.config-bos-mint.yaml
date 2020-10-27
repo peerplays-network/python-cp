@@ -12,17 +12,11 @@ dataproxy_link:
     proxies:
 
 connection:
-    use: elizabeth # enter your desired chain
+    use: beatrice # enter your desired chain
 
-    elizabeth:
+    beatrice:
         node:
-          - ws://ec2-99-79-98-229.ca-central-1.compute.amazonaws.com:8090
-        nobroadcast: False
-        num_entries: 1
-
-    hercules:
-        node:
-            - wss://hercules.peerplays.download/api
+          - ws://<API_NODE_HOST>:<API_NODE_PORT>
         nobroadcast: False
         num_entries: 1
 
@@ -32,3 +26,10 @@ allowed_assets:
     - TEST
     - BTF
 
+potatoNames:
+  - "couchpotato1"
+  - "couchpotato2"
+
+bosApis: 
+  - "http://<BOS_AUTO_HOST1>:8010/trigger"
+  - "http://<BOS_AUTO_HOST2>:8010/trigger"
