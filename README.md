@@ -51,7 +51,16 @@ How to Run
 ```
 python3 cp_local.py
 ```
+Now, to update any created event use 'u' And 
+to create any new event use 'c'
 
+```
+(env) ubuntu@ip-172-31-27-119:~/cp/python-cp$ python3 cp_local.py
+u: Update event
+c: Create event
+Enter your choice u/c:
+
+```
 
 TO DO
 =====
