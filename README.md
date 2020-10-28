@@ -37,7 +37,33 @@ Copy the exmaple config to a file called config-bos-mint.yaml.
 ```
 cp example.config-bos-mint.yaml config-bos-mint.yaml
 ```
-Update config-bos-mint.yaml with the relevant information.
+Update config-bos-mint.yaml with your desired information.
+
+```
+debug: <TRUE|FALSE>
+project_name: PYTHON COUCH POTATO
+project_sub_name: The Python Couch Potato project
+secret_key: <random string>
+advanced_features: <True|False>
+
+sql_database: "sqlite:///{cwd}/bookied-local.db"
+
+connection:
+    use: blockchain to use
+
+    <name of blockchain>:
+        node: <websocket blockchain api endpoint>
+        # Whether or not to broadcast actions to the blockchain
+        nobroadcast: <True|False>
+        # Number of times to retry connecting
+        num_retries: <int>
+
+allowed_assets: <list of Assets to be used>
+
+potatoNames: <list of names associate with Couch Potato>
+
+bosApis: <list of BOS endpoints>
+```
 
 # Usage
 ```
