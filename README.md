@@ -1,4 +1,5 @@
-python-cp stands for Pyhton Couch Potato
+python-cp stands for Pyhton Couch Potato.
+
 This project is part of peerplays block chain tech catering sports feed for bos-auto. 
 The purpose of this project is to develop a mechanism for gathering information about sporting events collectively.
 
@@ -20,7 +21,8 @@ Software Dependencies
 
 Python is installed by default in Ubuntu Linux.
 
-Install other packages with
+Install other packages
+=======================
 
 `sudo apt-get update`
 
@@ -28,7 +30,7 @@ Install other packages with
 
 `sudo apt-get install libmysqlclient-dev`
 
-Install
+Install Python_cp
 =======
 ```
 git clone https://gitlab.com/PBSA/PeerplaysIO/tools-libs/python-cp.git
@@ -46,7 +48,7 @@ pip3 install -r requirements.txt
 
 Update config-bos-mint.yaml with relevant information
 
-How to Run
+How to Run CP
 ==========
 ```
 python3 cp_local.py
