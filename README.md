@@ -81,7 +81,7 @@ Select Sport
 Enter index of key:
 ```
 
-- If user want want to create event on 'Baseball' sports, then need to selecr '0' index
+- If user want want to create event on 'Baseball' sports, then need to select '0' index
 
 ```
 Enter index of key: 0
@@ -92,6 +92,97 @@ Select Event Group
 2 MLB#WorldSeries
 Enter index of key:
 ```
+- Now, select a 'Event group' for the selected sports, for ' MLB#RegSeas' select '0' index
+
+```
+Enter index of key: 0
+
+Select Home Team
+0 Arizona Diamondbacks
+1 Atlanta Braves
+2 Baltimore Orioles
+3 Boston Red Sox
+4 Chicago Cubs
+5 Chicago White Sox
+6 Cincinnati Reds
+7 Cleveland Indians
+8 Colorado Rockies
+9 Detroit Tigers
+10 Houston Astros
+11 Kansas City Royals
+12 Los Angeles Angels
+13 Los Angeles Dodgers
+14 Miami Marlins
+15 Milwaukee Brewers
+16 Minnesota Twins
+17 New York Mets
+18 New York Yankees
+19 Oakland Athletics
+20 Philadelphia Phillies
+21 Pittsburgh Pirates
+22 San Diego Padres
+23 San Francisco Giants
+24 Seattle Mariners
+25 St. Louis Cardinals
+26 Tampa Bay Rays
+27 Texas Rangers
+28 Toronto Blue Jays
+29 Washington Nationals
+Enter index of key:
+```
+- Here, need to select 'Home team' for the event. For 'Chicago Cubs', choose index '4'
+
+```
+Enter index of key: 4
+
+Select Away Team
+0 Arizona Diamondbacks
+1 Atlanta Braves
+2 Baltimore Orioles
+3 Boston Red Sox
+4 Chicago Cubs
+5 Chicago White Sox
+6 Cincinnati Reds
+7 Cleveland Indians
+8 Colorado Rockies
+9 Detroit Tigers
+10 Houston Astros
+11 Kansas City Royals
+12 Los Angeles Angels
+13 Los Angeles Dodgers
+14 Miami Marlins
+15 Milwaukee Brewers
+16 Minnesota Twins
+17 New York Mets
+18 New York Yankees
+19 Oakland Athletics
+20 Philadelphia Phillies
+21 Pittsburgh Pirates
+22 San Diego Padres
+23 San Francisco Giants
+24 Seattle Mariners
+25 St. Louis Cardinals
+26 Tampa Bay Rays
+27 Texas Rangers
+28 Toronto Blue Jays
+29 Washington Nationals
+Enter index of key:
+```
+
+- Choose 'Away team' now. For 'Chicago White Sox' , choose index '5'
+
+```
+Enter index of key: 5
+
+Enter Start Time in the format 2020-08-25T22:00:00Z :
+```
+
+- Here, need to enter the start time in '2020-08-25T22:00:00Z' format
+```
+Enter Start Time in the format 2020-08-25T22:00:00Z :2020-10-29T21:00:00Z
+(env) mach :~/pytoncouchpotato/python-cp$
+```
+
 
 
 TO DO
