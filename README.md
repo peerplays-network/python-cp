@@ -47,6 +47,22 @@ pip3 install -r requirements.txt
 ```
 
 Update config-bos-mint.yaml with relevant information
+=====================================================
+- In case to to make python_cp 'chain' sepcfic from 'Gladiator' spicific
+```
+change connection to `use: ChainName` from `use: gladiator`
+```
+
+- In case to change the gladiator node
+
+```
+gladiator:
+        node:
+            - ws://96.46.49.16:8090
+```
+Change above node to any desired node
+
+
 
 How to Run CP
 ==========
