@@ -200,6 +200,51 @@ Enter Start Time in the format 2020-08-25T22:00:00Z :2020-10-29T21:00:00Z
 ```
 
 
+Updating created event with selection of 'u'
+===========================================
+
+Here, user can update any created event by initiate the update flow with using 'u'
+
+```
+u: Update event
+c: Create event
+Enter your choice u/c: u
+Fetching all active events, wait a few seconds
+
+id                                                1.22.42
+name              [[en, Los Angeles Lakers @ Miami Heat]]
+season                                           [[en, ]]
+start_time                            2020-10-07T06:30:00
+event_group_id                                    1.21.15
+scores                                                 []
+status                                           upcoming
+Name: 0, dtype: object
+[['en', 'NBA Regular Season'], ['identifier', 'NBA Regular Season'], ['sen', 'NBA']]
+{'id': '1.20.3', 'name': [['en', 'Basketball'], ['identifier', 'Basketball'], ['sen', 'Basketball']], 'typeName': 'sport', 'parentId': None, 'toString': 'Basketball (1.20.3)'}
+'U'pdate the event/'S'kip to the next event, u/s :
+```
+
+- Go to the event that want to update and then again choose 'u' to update that event
+```
+'U'pdate the event/'S'kip to the next event, u/s : u
+
+Select Call
+0 in_progress
+1 finish
+2 result
+3 canceled
+Enter index of key:
+```
+
+Now, if want to change the event status to cancel, then choose index as 3
+
+```
+Enter index of key: 3
+(env) machineName:~/pytoncouchpotato/python-cp$
+```
+thats it. Status of event is updated successfully
+
+
 
 TO DO
 =====
