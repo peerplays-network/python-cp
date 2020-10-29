@@ -64,8 +64,39 @@ Enter your choice u/c:
 
 ```
 
+Creating new event with selection of 'c'
+=======================================
+
+- First need to select sports on which user want to create a new event
+
+```
+Enter your choice u/c: c
+
+Select Sport
+0 Baseball
+1 Basketball
+2 Soccer
+3 Ice Hockey
+4 AmericanFootball
+Enter index of key:
+```
+
+- If user want want to create event on 'Baseball' sports, then need to selecr '0' index
+
+```
+Enter index of key: 0
+
+Select Event Group
+0 MLB#RegSeas
+1 MLB#Playoffs
+2 MLB#WorldSeries
+Enter index of key:
+```
+
+
 TO DO
 =====
+
 
 Other
 =====
