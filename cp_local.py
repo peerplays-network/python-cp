@@ -104,8 +104,8 @@ class Cp():
         for participant in participants:
             # particpantIdentifiers.append(participant["aliases"][0])
             participantDisplays.append(participant.values())
-            particpantIdentifiers.append(participant["identifier"])
-            # particpantIdentifiers.append(participant["name"]["en"])
+            # particpantIdentifiers.append(participant["identifier"])
+            particpantIdentifiers.append(participant["name"]["en"])
         return particpantIdentifiers, participantDisplays
 
     def CliManufactureCreateIncident(self):
