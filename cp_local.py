@@ -292,9 +292,11 @@ class Cp():
         if isinstance(incident, type(None)):
             print("No incident to update")
             return None, None
-        r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2")
-        return r, r2
+        rs = []
+        for potatoName in potatoNames:
+            r = self.Push2bos(incident, potatoName)
+            rs.append(r)
+        return rs
         # r = self.Push2dp(incident)
 
     def Push2dp(self, incident):
@@ -343,7 +345,7 @@ class Cp():
         # r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
         # return r, r2
-        return r
+        return rs
 
     def Choose(self):
         # print("Choose u or c:")
