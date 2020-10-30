@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from bos_mint.node import Node
 from bookiesports.normalize import IncidentsNormalizer
@@ -7,13 +8,29 @@ from bos_incidents.datestring import date_to_string, string_to_date
 from datetime import datetime, timezone
 import requests
 import yaml
+import logging
 
-with open("config_cp.yaml", "r") as f:
+
+with open("config-bos-mint.yaml", "r") as f:
     config = yaml.safe_load(f)
-chainName = config["chainName"]
+chainName = config["connection"]["use"]
 bosApis = config["bosApis"]
+potatoNames = config["potatoNames"]
+
+
+# Create and configure logger
+# logging.basicConfig(filename="za.log",
+#                     format='%(asctime)s %(message)s',
+#                     filemode='a')
+# Creating an object
+logger = logging.getLogger()
+
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.INFO)
 
 node = Node()
+# node.unlock("peerplays**")
+# node.unlock(config["password"])
 ppy = node.get_node()
 rpc = ppy.rpc
 
@@ -27,7 +44,7 @@ INCIDENT_CALLS = [
     "dynamic_bmgs",
 ]
 
-normalizer = IncidentsNormalizer(chain="elizabeth")
+# normalizer = IncidentsNormalizer(chain="elizabeth")
 normalizer = IncidentsNormalizer(chain=chainName)
 normalize = normalizer.normalize
 
@@ -205,7 +222,7 @@ class Cp():
         self._event = event
         print("")
         print("Select Call")
-        self._call = self.GetKey(INCIDENT_CALLS)
+        self._call = self.GetKey(INCIDENT_CALLS[1:-1])
         incident = dict()
         incident["call"] = self._call
 
@@ -288,9 +305,11 @@ class Cp():
         if isinstance(incident, type(None)):
             print("No incident to update")
             return None, None
-        r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2")
-        return r, r2
+        rs = []
+        for potatoName in potatoNames:
+            r = self.Push2bos(incident, potatoName)
+            rs.append(r)
+        return rs
         # r = self.Push2dp(incident)
 
     def Push2dp(self, incident):
@@ -317,23 +336,37 @@ class Cp():
         self._incident = incident
         incident = normalize(incident, True)
         self._incident = incident
+        logger.info(str(incident))
+
         # r = requests.post(url=bos["local"], json=incident)
-        for api in bosApis:
+        rng = np.random.default_rng()
+        lBosApis = len(bosApis)
+        ks = rng.choice(lBosApis, size=lBosApis, replace=False)
+        # print(incident)
+        for k in ks:
+            # for api in bosApis:
+            api = bosApis[k]
+            # print(api)
             r = requests.post(url=api, json=incident)
         return r
 
     def Create(self):
         incident = self.CliManufactureCreateIncident()
-        r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2")
+        rs = []
+        for potatoName in potatoNames:
+            r = self.Push2bos(incident, potatoName)
+            rs.append(r)
+        # r = self.Push2bos(incident, "jemshid1")
+        # r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
-        return r, r2
+        # return r, r2
+        return rs
 
     def Choose(self):
-        print("Choose u or c:")
+        # print("Choose u or c:")
         print("u: Update event")
         print("c: Create event")
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice u/c: ")
         if choice == "u":
             self.Update()
         elif choice == "c":
