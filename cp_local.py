@@ -8,12 +8,25 @@ from bos_incidents.datestring import date_to_string, string_to_date
 from datetime import datetime, timezone
 import requests
 import yaml
+import logging
+
 
 with open("config-bos-mint.yaml", "r") as f:
     config = yaml.safe_load(f)
 chainName = config["connection"]["use"]
 bosApis = config["bosApis"]
 potatoNames = config["potatoNames"]
+
+
+# Create and configure logger
+# logging.basicConfig(filename="za.log",
+#                     format='%(asctime)s %(message)s',
+#                     filemode='a')
+# Creating an object
+logger = logging.getLogger()
+
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.INFO)
 
 node = Node()
 # node.unlock("peerplays**")
@@ -323,6 +336,8 @@ class Cp():
         self._incident = incident
         incident = normalize(incident, True)
         self._incident = incident
+        logger.info(str(incident))
+
         # r = requests.post(url=bos["local"], json=incident)
         rng = np.random.default_rng()
         lBosApis = len(bosApis)
