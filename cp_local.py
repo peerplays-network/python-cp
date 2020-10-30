@@ -8,12 +8,25 @@ from bos_incidents.datestring import date_to_string, string_to_date
 from datetime import datetime, timezone
 import requests
 import yaml
+import logging
+
 
 with open("config-bos-mint.yaml", "r") as f:
     config = yaml.safe_load(f)
 chainName = config["connection"]["use"]
 bosApis = config["bosApis"]
 potatoNames = config["potatoNames"]
+
+
+# Create and configure logger
+# logging.basicConfig(filename="za.log",
+#                     format='%(asctime)s %(message)s',
+#                     filemode='a')
+# Creating an object
+logger = logging.getLogger()
+
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.INFO)
 
 node = Node()
 # node.unlock("peerplays**")
@@ -292,9 +305,11 @@ class Cp():
         if isinstance(incident, type(None)):
             print("No incident to update")
             return None, None
-        r = self.Push2bos(incident, "jemshid1")
-        r2 = self.Push2bos(incident, "jemshid2")
-        return r, r2
+        rs = []
+        for potatoName in potatoNames:
+            r = self.Push2bos(incident, potatoName)
+            rs.append(r)
+        return rs
         # r = self.Push2dp(incident)
 
     def Push2dp(self, incident):
@@ -321,6 +336,8 @@ class Cp():
         self._incident = incident
         incident = normalize(incident, True)
         self._incident = incident
+        logger.info(str(incident))
+
         # r = requests.post(url=bos["local"], json=incident)
         rng = np.random.default_rng()
         lBosApis = len(bosApis)
@@ -343,7 +360,7 @@ class Cp():
         # r2 = self.Push2bos(incident, "jemshid2")
         # r = self.Push2dp(self._incident)
         # return r, r2
-        return r
+        return rs
 
     def Choose(self):
         # print("Choose u or c:")
