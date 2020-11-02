@@ -360,6 +360,7 @@ class Cp():
             api = bosApis[k]
             # print(api)
             r = requests.post(url=api, json=incident)
+            print(api, r)
         return r
 
     def Create(self):
