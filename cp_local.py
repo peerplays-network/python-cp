@@ -161,10 +161,22 @@ class Cp():
 
         return incident
 
+    def Fix241(self, eventsAll):
+        df = pd.DataFrame()
+        for k in range(len(eventsAll)):
+            ds = eventsAll.iloc[k]
+            dsDate = string_to_date(ds["start_time"] + "Z")
+            if dsDate > string_to_date("2020-09-01T00:00:00Z"):
+                df = df.append(ds)
+        return df
+
     def EventsAllSorted(self):
         print('Fetching all active events, wait a few seconds')
         eventsAll = node.getEvents("all")
         eventsAll = pd.DataFrame(eventsAll)
+        if len(eventsAll) == 0:
+            return None
+        eventsAll = self.Fix241(eventsAll)
         if len(eventsAll) == 0:
             return None
         eventsAll = eventsAll.sort_values("start_time")
