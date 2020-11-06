@@ -347,7 +347,13 @@ class Cp():
             # for api in bosApis:
             api = bosApis[k]
             # print(api)
-            r = requests.post(url=api, json=incident)
+            try:
+                r = requests.post(url=api, json=incident)
+                logger.info(str(api) + " : " + str(r))
+                print(api, r)
+            except Exception as e:
+                logger.info(api + " failed " + str(e))
+                print(api, ":", "failed", ":", e)
         return r
 
     def Create(self):
