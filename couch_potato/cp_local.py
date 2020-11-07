@@ -209,7 +209,7 @@ class Cp():
         eventsAll = eventsAll.sort_values("start_time")
         return eventsAll
 
-    def EventsAllSortedforApi(self):
+    def EventsAllSortedForApi(self):
         print('Fetching all active events, wait a few seconds')
         eventsAll = node.getEvents("all")
         eventsAll = pd.DataFrame(eventsAll)
@@ -218,7 +218,9 @@ class Cp():
         eventsAll = eventsAll.sort_values("start_time")
         eventsAllList = []
         for k in range(len(eventsAll)):
-            eventsAllList.append(eventsAll.iloc[k])
+            ds = eventsAll.iloc[k]
+            ds = dict(ds)
+            eventsAllList.append(ds)
         return eventsAllList
 
     def Event2Update(self):
